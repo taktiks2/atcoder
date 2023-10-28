@@ -6,17 +6,22 @@ match: Lines
 cases:
   - name: sample1
     in: |
-      3 4
+      erasedream
     out: |
-      Even
+      YES
   - name: sample2
     in: |
-      1 21
+      dreameraser
     out: |
-      Odd
+      YES
+  - name: sample3
+    in: |
+      dreamerer
+    out: |
+      NO
 
 extend:
   - type: Text
-    path: "./a"
+    path: "./abc049c"
     in: /in/*.txt
     out: /out/*.txt

@@ -6,34 +6,31 @@ match: Lines
 cases:
   - name: sample1
     in: |
-      4 3
-      0 1 W
-      1 2 W
-      5 3 B
-      5 4 B
-    out: |
-      4
-  - name: sample2
-    in: |
-      2 1000
-      0 0 B
-      0 1 W
+      2
+      2
+      2
+      100
     out: |
       2
+  - name: sample2
+    in: |
+      5
+      1
+      0
+      150
+    out: |
+      0
   - name: sample3
     in: |
-      6 2
-      1 2 B
-      2 1 W
-      2 2 B
-      1 0 B
-      0 6 W
-      4 5 W
+      30
+      40
+      50
+      6000
     out: |
-      4
+      213
 
 extend:
   - type: Text
-    path: "./d"
+    path: "./abc087b"
     in: /in/*.txt
     out: /out/*.txt
