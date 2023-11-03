@@ -10,9 +10,9 @@ fn main() {
 
     let mut cnt = 0;
 
-    for i in 0..=a {
-        for j in 0..=b {
-            let remain_amount = x - (i * 500 + j * 100);
+    for ai in 0..=a {
+        for bi in 0..=b {
+            let remain_amount = x - (ai * 500 + bi * 100);
             if remain_amount == 0 {
                 cnt += 1;
             } else if remain_amount < 50 {
