@@ -9,27 +9,16 @@ fn main() {
 
     let mut ans = vec![vec![0; w]; h];
 
+    let row_sums: Vec<u32> = m.iter().map(|row| row.iter().sum()).collect();
+    let col_sums: Vec<u32> = (0..w).map(|index| m.iter().map(|row| row[index]).sum()).collect();
+
     for hi in 0..h {
-        let row_sum: u32 = m[hi].iter().sum();
-
-        for wj in 0..w {
-            let mut ttl = 0;
-
-            let col_sum = m.iter().map(|row| row[wj]).sum::<u32>();
-            ttl += col_sum + row_sum - m[hi][wj];
-
-            ans[hi][wj] = ttl;
+        for wi in 0..w {
+            ans[hi][wi] = row_sums[hi] + col_sums[wi] - m[hi][wi];
         }
     }
 
     for row in ans {
-        for (i, val) in row.iter().enumerate() {
-            if i == row.len() - 1 {
-                print!("{}", val);
-            } else {
-                print!("{} ", val);
-            }
-        }
-        println!();
+        println!("{}", row.iter().map(|num| num.to_string()).collect::<Vec<String>>().join(" "));
     }
 }
