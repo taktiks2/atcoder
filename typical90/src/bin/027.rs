@@ -7,16 +7,14 @@ fn main() {
     };
 
     let mut ans: Vec<usize> = vec![];
-    let mut users: Vec<String> = vec![];
+    let mut users = String::from("");
 
     for i in 0..n {
-        if users.iter().any(|user| user == &s[i]) {
-            continue;
-        } else {
+        if !users.contains(&s[i]) {
+            users.push_str(&format!("{},", s[i]));
             ans.push(i + 1);
-            users.push(s[i].clone());
         }
-    }
+    } 
 
     for a in ans {
         println!("{}", a);
