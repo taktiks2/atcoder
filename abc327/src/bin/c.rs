@@ -1,17 +1,42 @@
 use proconio::input;
+use std::collections::HashSet;
 
 fn main() {
     input! {
-        a: [[u32; 9]; 9],
+        a: [[i32; 9]; 9],
     };
 
-    let mut cols = vec![];
-
-    for wi in 0..9 {
-        let mut temp_row = vec![0; 9];
-        for row in a.iter() {
-            temp_row.push(row[wi]);
+    for row in &a {
+        let hash_row: HashSet<_> = row.iter().copied().collect();
+        if hash_row.iter().sum::<i32>() != 45 {
+            println!("No");
+            return;
         }
-        cols.push(temp_row);
+    }
+
+    for i in 0..9 {
+        let mut hash_col = HashSet::new();
+        for row in a.iter() {
+            hash_col.insert(row[i]);
+        }
+        if hash_col.iter().sum::<i32>() != 45 {
+            println!("No");
+            return;
+        }
+    }
+
+    for y in 0..3 {
+        for x in 0..3 {
+            for i in (y * 3)..(x * 3 + 3) {
+                let mut hash_sql = HashSet::new();
+                for j in (x * 3)..(x * 3 + 3) {
+                    hash_sql.insert(a[i][j]);
+                }
+                if hash_sql.iter().sum::<i32>() != 45 {
+                    println!("No");
+                    return;
+                }
+            }
+        }
     }
 }
