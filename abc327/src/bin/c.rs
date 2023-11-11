@@ -27,16 +27,18 @@ fn main() {
 
     for y in 0..3 {
         for x in 0..3 {
-            for i in (y * 3)..(x * 3 + 3) {
-                let mut hash_sql = HashSet::new();
+            let mut hash_sql = HashSet::new();
+            for i in (y * 3)..(y * 3 + 3) {
                 for j in (x * 3)..(x * 3 + 3) {
                     hash_sql.insert(a[i][j]);
                 }
-                if hash_sql.iter().sum::<i32>() != 45 {
-                    println!("No");
-                    return;
-                }
+            }
+            if hash_sql.iter().sum::<i32>() != 45 {
+                println!("No");
+                return;
             }
         }
     }
+
+    println!("Yes");
 }
