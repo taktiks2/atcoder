@@ -15,7 +15,7 @@ fn main() {
             for k in 0..j {
                 for l in 0..k {
                     for m in 0..l {
-                        if a[i] * a[j] * a[k] * a[l] * a[m] % p == q {
+                        if a[i] * a[j] % p * a[k] % p * a[l] % p * a[m] % p == q {
                             ans += 1;
                         }
                     }
