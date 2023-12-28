@@ -1,25 +1,7 @@
 use proconio::input;
 
-const TABLE: [[usize; 5]; 5] = [
-    [0, 1, 2, 2, 1],
-    [1, 0, 1, 2, 2],
-    [2, 1, 0, 1, 2],
-    [2, 2, 1, 0, 1],
-    [1, 2, 2, 1, 0],
-];
-
-fn convert_letter_to_number(input: &str) -> Vec<usize> {
-    input
-        .chars()
-        .filter_map(|c| match c {
-            'A' => Some(0),
-            'B' => Some(1),
-            'C' => Some(2),
-            'D' => Some(3),
-            'E' => Some(4),
-            _ => None,
-        })
-        .collect()
+fn is_long(nums: Vec<i32>) -> bool {
+    (nums[0] - nums[1]).abs() == 2 || (nums[0] - nums[1]).abs() == 3
 }
 
 fn main() {
@@ -28,10 +10,10 @@ fn main() {
         t: String,
     };
 
-    let s_num = convert_letter_to_number(&s);
-    let t_num = convert_letter_to_number(&t);
+    let s_num: Vec<i32> = s.chars().map(|c| (c as i32)).collect();
+    let t_num: Vec<i32> = t.chars().map(|c| (c as i32)).collect();
 
-    if TABLE[s_num[0]][s_num[1]] == TABLE[t_num[0]][t_num[1]] {
+    if is_long(s_num) == is_long(t_num) {
         println!("Yes")
     } else {
         println!("No")
