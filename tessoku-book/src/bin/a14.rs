@@ -26,23 +26,22 @@ fn main() {
 
     q.sort();
 
-    // println!("{:?}", p);
-    // println!("{:?}", q);
+    for i in 1..=(n * n) {
+        if p[i] > k {
+            continue;
+        }
 
-    for i in 1..=n * n {
         let target = k - p[i];
         let left = q.binary_search(&target);
 
-        // println!("{:?}", left);
         match left {
-            Ok(n) => {
-                // println!("{}", n);
-                if q[n] == target {
-                    println!("Yes");
-                    return;
-                }
+            Ok(_) => {
+                println!("Yes");
+                return;
             }
             Err(_) => continue,
         }
     }
+
+    println!("No");
 }
