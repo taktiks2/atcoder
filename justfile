@@ -9,9 +9,40 @@ set shell := ["bash", "-uc"]
 default:
     @just --list --unsorted
 
-# AtCoder にログイン
+# 2025-03 以降 Cloudflare により `cargo compete login` は使えないため手動コピー方式。
+# 提出も終了済みコンテストへは CLI 不可 = ブラウザのみ。開催中コンテストは just submit 可。
+# AtCoder に再ログイン: ブラウザでログイン後、REVEL_SESSION Cookie を貼り付けて保存
 login:
-    cargo compete login atcoder
+    #!/usr/bin/env bash
+    set -euo pipefail
+    jar="$HOME/Library/Application Support/cargo-compete/cookies.jsonl"
+    open "https://atcoder.jp/login"
+    echo "1. 開いたページでログインする"
+    echo "2. 開発者ツール (Cmd+Opt+I) → Application → Cookies → https://atcoder.jp"
+    echo "3. REVEL_SESSION の「値」をコピーして貼り付け、Enter"
+    read -rp "REVEL_SESSION: " session
+    session="${session#REVEL_SESSION=}"; session="${session//[$'\t\r\n \"']/}"
+    if [[ "$session" != *UserName%3A* ]]; then
+        echo "エラー: 未ログインの匿名セッションです。ブラウザでログインしてからやり直してください" >&2
+        exit 1
+    fi
+    ts="$(grep -oE '_TS%3A[0-9]+' <<<"$session" | sed 's/_TS%3A//' || true)"
+    if [[ -n "$ts" ]]; then
+        exp="$(date -u -d "@$ts" +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -u -r "$ts" +%Y-%m-%dT%H:%M:%SZ)"
+    else
+        exp="$(date -u -d '+180 days' +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || date -u -v+180d +%Y-%m-%dT%H:%M:%SZ)"
+    fi
+    mkdir -p "$(dirname "$jar")"
+    [[ -f "$jar" ]] && cp "$jar" "$jar.bak"
+    jq -nc --arg rc "REVEL_SESSION=$session" --arg exp "$exp" \
+        '{raw_cookie: $rc, path: ["/", true], domain: {HostOnly: "atcoder.jp"}, expires: {AtUtc: $exp}}' > "$jar"
+    user="$(grep -oE 'UserScreenName%3A[A-Za-z0-9_]+' <<<"$session" | sed 's/UserScreenName%3A//')"
+    echo "OK: ${user:-(不明)} としてセッションを保存しました (期限 $exp)"
+
+# ログイン状態を確認 (Cookie のユーザー名 + 要ログイン API で E2E 確認)
+whoami:
+    @grep -o 'UserScreenName%3A[A-Za-z0-9_]*' "$HOME/Library/Application Support/cargo-compete/cookies.jsonl" 2>/dev/null | sed 's/UserScreenName%3A/Cookie: /' || { echo "未ログイン (匿名セッション)"; exit 1; }
+    @d=$(ls -d abc/* 2>/dev/null | head -1) && cd "$d" && cargo compete retrieve submission-summaries > /dev/null && echo "API 疎通: OK (ログイン有効)"
 
 # 新規コンテスト作成: just new abc338 (生成先は compete.toml が種別ごとに振り分け)
 new contest:
