@@ -58,6 +58,16 @@ test contest problem *flags:
 submit contest problem *flags:
     d="$("{{ just_executable() }}" _dir {{ contest }})" && mkdir -p "$d/testcases/{{ problem }}" && cd "$d" && cargo compete submit {{ problem }} {{ flags }}
 
+# 終了済みコンテストは CLI 提出不可のため、ブラウザ提出を最短化する。
+# URL は Cargo.toml のメタデータから取得 (tessoku-book 等、URL が規則的でない場合に対応)。
+# ソースをクリップボードにコピーして問題ページを開く: just clip abc472 a
+clip contest problem:
+    d="$("{{ just_executable() }}" _dir {{ contest }})" && \
+    url=$(grep -E 'alias = "{{ problem }}"|^{{ problem }} = ' "$d/Cargo.toml" | grep -oE 'https://[^"]+' | head -1) && \
+    pbcopy < "$d/src/bin/{{ problem }}.rs" && \
+    echo "クリップボードにコピー: $d/src/bin/{{ problem }}.rs" && \
+    open "${url:-https://atcoder.jp/contests/{{ contest }}/tasks/{{ contest }}_{{ problem }}}"
+
 # 問題ページとソース/テストを開く: just open abc338
 open contest:
     cd "$("{{ just_executable() }}" _dir {{ contest }})" && cargo compete open
@@ -70,6 +80,7 @@ alias n := new
 alias t := test
 alias s := submit
 alias o := open
+alias c := clip
 
 # コンテスト名からディレクトリを解決 (内部用)
 _dir contest:
