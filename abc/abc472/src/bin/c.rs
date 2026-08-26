@@ -1,5 +1,4 @@
-// よりRustらしい解法
-// use std::collections::VecDeque;
+// algo: sliding-window, prefix-sum
 use proconio::input;
 
 fn main() {
@@ -25,19 +24,20 @@ fn main() {
             println!("No");
         }
     }
-
-    // よりRustらしい解法
-    // let mut window: VecDeque<i64> = VecDeque::with_capacity(m);
-    // let mut sum = 0i64;
-    //
-    // for &x in &a {
-    //     if window.len() == m {
-    //         sum -= window.pop_front().unwrap();
-    //     }
-    //     let eat = sum + x <= k;
-    //     let c = if eat { x } else { 0 };
-    //     sum += c;
-    //     window.push_back(c);
-    //     println!("{}", if eat { "Yes" } else { "No" });
-    // }
 }
+
+// alt: VecDeque を窓にすると添字管理が消えてより Rust らしい
+// use std::collections::VecDeque;
+// let mut window: VecDeque<i64> = VecDeque::with_capacity(m);
+// let mut sum = 0i64;
+//
+// for &x in &a {
+//     if window.len() == m {
+//         sum -= window.pop_front().unwrap();
+//     }
+//     let eat = sum + x <= k;
+//     let c = if eat { x } else { 0 };
+//     sum += c;
+//     window.push_back(c);
+//     println!("{}", if eat { "Yes" } else { "No" });
+// }

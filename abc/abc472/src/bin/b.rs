@@ -1,3 +1,4 @@
+// algo: prefix-sum
 use proconio::input;
 
 fn main() {
@@ -27,26 +28,26 @@ fn main() {
     }
 
     println!("{}", min);
-
-    // より良い解法
-    // let total = pre_sum[n - 1];
-    // let ans = pre_sum[..n - 1]
-    //     .iter()
-    //     .map(|left| (total - left * 2).abs())
-    //     .min()
-    //     .unwrap();
-    // println!("{}", ans);
-
-    // もっと良い解法
-    // let total: i32 = l.iter().sum();
-    // let ans = l[..n - 1]
-    //     .iter()
-    //     .scan(0, |left, x| {
-    //         *left += x;
-    //         let sub = (total - *left * 2).abs();
-    //         Some(sub)
-    //     })
-    //     .min()
-    //     .unwrap();
-    // println!("{}", ans);
 }
+
+// alt: map + min で手動の min 管理と i == 0 の分岐が消える
+// let total = prefix_sum[n - 1];
+// let ans = prefix_sum[..n - 1]
+//     .iter()
+//     .map(|left| (total - left * 2).abs())
+//     .min()
+//     .unwrap();
+// println!("{}", ans);
+
+// alt: scan で逐次計算すれば累積和の配列自体が不要 (追加メモリ O(1))
+// let total: i32 = l.iter().sum();
+// let ans = l[..n - 1]
+//     .iter()
+//     .scan(0, |left, x| {
+//         *left += x;
+//         let sub = (total - *left * 2).abs();
+//         Some(sub)
+//     })
+//     .min()
+//     .unwrap();
+// println!("{}", ans);

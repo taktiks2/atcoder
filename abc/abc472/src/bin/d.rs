@@ -1,8 +1,7 @@
+// algo: multi-source-bfs, grid
 use proconio::input;
 use proconio::marker::Chars;
 use std::collections::VecDeque;
-
-// 多始点 BFS
 
 fn main() {
     input! {
