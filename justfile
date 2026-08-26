@@ -76,11 +76,22 @@ open contest:
 retrieve contest *flags:
     cd "$("{{ just_executable() }}" _dir {{ contest }})" && cargo compete retrieve testcases {{ flags }}
 
+# タグで過去問を検索 (部分一致・大文字小文字無視): just algo bfs
+# タグの語彙は TAGS.md 参照。初出のタグは TAGS.md に追記してから使う
+algo tag:
+    @grep -rni --include='*.rs' '^// algo:.*{{ tag }}' $(ls -d abc arc agc ahc books other 2>/dev/null) || echo "該当なし: {{ tag }}"
+
+# 全タグの使用回数一覧: just algos
+algos:
+    @grep -rh --include='*.rs' '^// algo:' $(ls -d abc arc agc ahc books other 2>/dev/null) \
+        | sed 's|^// algo: *||' | tr ',' '\n' | sed 's/^ *//; s/ *$//' | sort | uniq -c | sort -rn
+
 alias n := new
 alias t := test
 alias s := submit
 alias o := open
 alias c := clip
+alias a := algo
 
 # コンテスト名からディレクトリを解決 (内部用)
 _dir contest:
