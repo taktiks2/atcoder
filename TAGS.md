@@ -102,6 +102,7 @@ fn main() {
 | タグ | 意味 | 使わない表記 |
 | --- | --- | --- |
 | greedy | 貪欲法 | |
+| counting | 出現回数のカウント・度数集計 | count, frequency |
 | sort | ソートして考える | sorting |
 | simulation | シミュレーション・愚直 | |
 | grid | グリッド問題 | |
