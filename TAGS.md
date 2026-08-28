@@ -65,6 +65,7 @@ fn main() {
 | タグ | 意味 | 使わない表記 |
 | --- | --- | --- |
 | graph | グラフ（全般） | |
+| connected-components | 連結成分の数え上げ・分解 | cc |
 | tree | 木 | |
 | dijkstra | ダイクストラ法 | |
 | bellman-ford | ベルマンフォード法 | |
