@@ -76,6 +76,11 @@ open contest:
 retrieve contest *flags:
     cd "$("{{ just_executable() }}" _dir {{ contest }})" && cargo compete retrieve testcases {{ flags }}
 
+# 模範解答 (library/) のテストが通ったときだけスニペットを再生成: just snippets
+# Neovim (blink.cmp) は起動時に snippets/rust.json を読むため、反映には nvim 再起動が必要
+snippets:
+    cd library && cargo test && mkdir -p ../snippets && cargo snippet -t vscode > ../snippets/rust.json
+
 # タグで過去問を検索 (部分一致・大文字小文字無視): just algo bfs
 # タグの語彙は TAGS.md 参照。初出のタグは TAGS.md に追記してから使う
 algo tag:

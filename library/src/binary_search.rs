@@ -1,9 +1,19 @@
+use cargo_snippet::snippet;
+
 /// めぐる式二分探索。`ok` は条件を満たす側、`ng` は満たさない側の初期値。
 /// `is_ok` が単調（境界を挟んで true/false が切り替わる）なら、
 /// 条件を満たす限界の値を返す。`ok < ng` / `ok > ng` どちらの向きでも使える。
-pub fn meguru_bisect(ok: i64, ng: i64, is_ok: impl Fn(i64) -> bool) -> i64 {
-    let _ = (ok, ng, is_ok);
-    todo!()
+#[snippet("binary_search")]
+pub fn meguru_bisect(mut ok: i64, mut ng: i64, is_ok: impl Fn(i64) -> bool) -> i64 {
+    while (ok - ng).abs() > 1 {
+        let mid = (ok + ng) / 2;
+        if is_ok(mid) {
+            ok = mid;
+        } else {
+            ng = mid;
+        }
+    }
+    ok
 }
 
 #[cfg(test)]

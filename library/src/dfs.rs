@@ -1,8 +1,22 @@
+use cargo_snippet::snippet;
+
 /// 深さ優先探索（再帰）。隣接リスト `g` 上で `start` から到達できる頂点を
 /// 行きがけ順（訪問順）で返す。
+#[snippet]
 pub fn dfs(g: &[Vec<usize>], start: usize) -> Vec<usize> {
-    let _ = (g, start);
-    todo!()
+    fn go(v: usize, g: &[Vec<usize>], visited: &mut [bool], order: &mut Vec<usize>) {
+        visited[v] = true;
+        order.push(v);
+        for &to in &g[v] {
+            if !visited[to] {
+                go(to, g, visited, order);
+            }
+        }
+    }
+    let mut visited = vec![false; g.len()];
+    let mut order = Vec::new();
+    go(start, g, &mut visited, &mut order);
+    order
 }
 
 #[cfg(test)]

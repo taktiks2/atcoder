@@ -1,8 +1,23 @@
+use cargo_snippet::snippet;
+
 /// 幅優先探索。隣接リスト `g` 上で `start` からの最短距離（辺数）を返す。
 /// 未到達の頂点は -1。
+#[snippet]
 pub fn bfs(g: &[Vec<usize>], start: usize) -> Vec<i64> {
-    let _ = (g, start);
-    todo!()
+    use std::collections::VecDeque;
+    let mut dist = vec![-1i64; g.len()];
+    let mut queue = VecDeque::new();
+    dist[start] = 0;
+    queue.push_back(start);
+    while let Some(v) = queue.pop_front() {
+        for &to in &g[v] {
+            if dist[to] == -1 {
+                dist[to] = dist[v] + 1;
+                queue.push_back(to);
+            }
+        }
+    }
+    dist
 }
 
 #[cfg(test)]

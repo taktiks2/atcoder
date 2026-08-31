@@ -1,0 +1,66 @@
+{
+  "bfs": {
+    "prefix": "bfs",
+    "body": [
+      "/// 幅優先探索。隣接リスト `g` 上で `start` からの最短距離（辺数）を返す。",
+      "/// 未到達の頂点は -1。",
+      "pub fn bfs(g: &[Vec<usize>], start: usize) -> Vec<i64> {",
+      "    use std::collections::VecDeque;",
+      "    let mut dist = vec![-1i64; g.len()];",
+      "    let mut queue = VecDeque::new();",
+      "    dist[start] = 0;",
+      "    queue.push_back(start);",
+      "    while let Some(v) = queue.pop_front() {",
+      "        for &to in &g[v] {",
+      "            if dist[to] == -1 {",
+      "                dist[to] = dist[v] + 1;",
+      "                queue.push_back(to);",
+      "            }",
+      "        }",
+      "    }",
+      "    dist",
+      "}"
+    ]
+  },
+  "binary_search": {
+    "prefix": "binary_search",
+    "body": [
+      "/// めぐる式二分探索。`ok` は条件を満たす側、`ng` は満たさない側の初期値。",
+      "/// `is_ok` が単調（境界を挟んで true/false が切り替わる）なら、",
+      "/// 条件を満たす限界の値を返す。`ok < ng` / `ok > ng` どちらの向きでも使える。",
+      "pub fn meguru_bisect(mut ok: i64, mut ng: i64, is_ok: impl Fn(i64) -> bool) -> i64 {",
+      "    while (ok - ng).abs() > 1 {",
+      "        let mid = (ok + ng) / 2;",
+      "        if is_ok(mid) {",
+      "            ok = mid;",
+      "        } else {",
+      "            ng = mid;",
+      "        }",
+      "    }",
+      "    ok",
+      "}"
+    ]
+  },
+  "dfs": {
+    "prefix": "dfs",
+    "body": [
+      "/// 深さ優先探索（再帰）。隣接リスト `g` 上で `start` から到達できる頂点を",
+      "/// 行きがけ順（訪問順）で返す。",
+      "pub fn dfs(g: &[Vec<usize>], start: usize) -> Vec<usize> {",
+      "    fn go(v: usize, g: &[Vec<usize>], visited: &mut [bool], order: &mut Vec<usize>) {",
+      "        visited[v] = true;",
+      "        order.push(v);",
+      "        for &to in &g[v] {",
+      "            if !visited[to] {",
+      "                go(to, g, visited, order);",
+      "            }",
+      "        }",
+      "    }",
+      "    let mut visited = vec![false; g.len()];",
+      "    let mut order = Vec::new();",
+      "    go(start, g, &mut visited, &mut order);",
+      "    order",
+      "}"
+    ]
+  }
+}
