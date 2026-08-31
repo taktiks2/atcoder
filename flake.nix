@@ -39,14 +39,27 @@
         buildInputs = [ pkgs.openssl pkgs.zlib ];
         doCheck = false;
       };
+      # nixpkgs に無いため crates.io からビルド (CLI は binaries feature が必須)
+      cargo-snippet = pkgs.rustPlatform.buildRustPackage rec {
+        pname = "cargo-snippet";
+        version = "0.6.5";
+        src = pkgs.fetchCrate {
+          inherit pname version;
+          hash = "sha256-zgNwNcWMcI3w4wh9i7JyidcG0XVjA1Cd8B9sD9kPLWA=";
+        };
+        cargoHash = "sha256-zeBvyeOEeDYU2Iw9D9CDfSfAoAz/q+46148GnC8ZNMw=";
+        buildFeatures = [ "binaries" ];
+        doCheck = false;
+      };
     in
     {
-      packages.${system}.cargo-compete = cargo-compete;
+      packages.${system} = { inherit cargo-compete cargo-snippet; };
 
       devShells.${system}.default = pkgs.mkShell {
         packages = [
           rustToolchain
           cargo-compete
+          cargo-snippet
           pkgs.rust-analyzer
         ];
       };
