@@ -72,8 +72,9 @@ Neovim（blink.cmp）から展開する。展開後のコードは自己完結�
 ### Neovim 側の設定
 
 blink.cmp の snippets ソースの `search_paths` に本リポジトリの `snippets/` を追加してある
-（dotfiles の `.config/nvim/lua/plugins/coding.lua`）。nvim 設定は home-manager 管理のため、
-設定変更時は dotfiles 側で `darwin-rebuild switch` が必要。スニペットの**再生成だけなら rebuild 不要**。
+（dotfiles の `.config/nvim/lua/plugins/coding.lua`）。nvim 設定は home-manager の
+out-of-store symlink で `~/dotfiles` に直リンクされているため、lua 設定もスニペット再生成も
+**nvim 再起動だけで反映される**（rebuild 不要）。
 
 ## ジャッジ環境（2025/10 言語アップデート準拠）
 
