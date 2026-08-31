@@ -1,0 +1,9 @@
+[package]
+name = "library"
+version = "0.1.0"
+# cargo-snippet (syn 1.x) がパースするため edition は保守的に 2021 とする
+edition = "2021"
+publish = false
+
+[dependencies]
+cargo-snippet = "0.6"
