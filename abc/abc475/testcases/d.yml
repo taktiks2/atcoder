@@ -1,0 +1,27 @@
+---
+type: Batch
+timelimit: ~
+match: Lines
+
+cases:
+  - name: sample1
+    in: |
+      motor
+    out: |
+      10607
+  - name: sample2
+    in: |
+      byebye
+    out: |
+      -1
+  - name: sample3
+    in: |
+      coconut
+    out: |
+      1010237
+
+extend:
+  - type: Text
+    path: "./d"
+    in: /in/*.txt
+    out: /out/*.txt

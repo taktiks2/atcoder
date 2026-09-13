@@ -1,0 +1,27 @@
+---
+type: Batch
+timelimit: ~
+match: Lines
+
+cases:
+  - name: sample1
+    in: |
+      mtr
+    out: |
+      motor
+  - name: sample2
+    in: |
+      mnclr
+    out: |
+      monocolor
+  - name: sample3
+    in: |
+      oo
+    out: |
+      ooo
+
+extend:
+  - type: Text
+    path: "./a"
+    in: /in/*.txt
+    out: /out/*.txt
