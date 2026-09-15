@@ -17,8 +17,11 @@
         overlays = [ rust-overlay.overlays.default ];
       };
       # AtCoder のジャッジ環境 (2025/10 言語アップデート) と同じバージョンに固定
+      # rust-analyzer は rustc と proc-macro の ABI が一致している必要があるため、
+      # nixpkgs 版ではなく同じツールチェーンの extension から取る
+      # (ずれると #[fastout] の展開で proc-macro-srv is not running になる)
       rustToolchain = pkgs.rust-bin.stable."1.89.0".default.override {
-        extensions = [ "rust-src" ];
+        extensions = [ "rust-src" "rust-analyzer" ];
       };
       # nixpkgs に無いため crates.io からビルド
       cargo-compete = pkgs.rustPlatform.buildRustPackage rec {
@@ -60,7 +63,6 @@
           rustToolchain
           cargo-compete
           cargo-snippet
-          pkgs.rust-analyzer
         ];
       };
     };
