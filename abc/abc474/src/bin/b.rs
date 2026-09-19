@@ -1,4 +1,4 @@
-// algo: simulation, grouping
+// algo: simulation
 use proconio::input;
 
 // 座席番号 1..N を 10 人ずつに区切ったものがグループで、退出順 i 番目 (0-indexed) の人は

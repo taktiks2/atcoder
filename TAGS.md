@@ -35,6 +35,7 @@ fn main() {
 | タグ | 意味 | 使わない表記 |
 | --- | --- | --- |
 | brute-force | 全探索 | full-search, zentansaku |
+| enumeration | 列挙（候補を直接構成して並べる） | |
 | bfs | 幅優先探索 | 幅優先 |
 | multi-source-bfs | 多始点 BFS | マルチソースBFS |
 | 01-bfs | 0-1 BFS | zero-one-bfs |
@@ -64,7 +65,7 @@ fn main() {
 
 | タグ | 意味 | 使わない表記 |
 | --- | --- | --- |
-| graph | グラフ（全般） | |
+| graph | グラフ（全般） | adjacency-list |
 | connected-components | 連結成分の数え上げ・分解 | cc |
 | tree | 木 | |
 | dijkstra | ダイクストラ法 | |
@@ -80,6 +81,8 @@ fn main() {
 | priority-queue | 優先度付きキュー | heap, binary-heap |
 | segment-tree | セグメント木 | segtree |
 | fenwick-tree | BIT（Binary Indexed Tree） | bit |
+| deque | 両端キュー（VecDeque） | |
+| set | 集合で既出判定・重複除去 | hashset |
 
 ## 数学
 
@@ -89,7 +92,9 @@ fn main() {
 | gcd | 最大公約数・最小公倍数 | lcm |
 | combinatorics | 組合せ・場合の数 | |
 | sieve | エラトステネスの篩・素数列挙 | prime-sieve |
-| modint | mod 演算・繰り返し二乗法 | mod-pow |
+| modint | mod 演算・繰り返し二乗法 | mod-pow, mod-arithmetic |
+| parity | 偶奇に着目する | |
+| radix-conversion | 基数変換 | |
 
 ## 文字列
 
@@ -103,6 +108,8 @@ fn main() {
 | タグ | 意味 | 使わない表記 |
 | --- | --- | --- |
 | greedy | 貪欲法 | |
+| exchange-argument | 交換論法（貪欲の正当性） | |
+| constructive | 構築 | |
 | counting | 出現回数のカウント・度数集計 | count, frequency |
 | sort | ソートして考える | sorting |
 | simulation | シミュレーション・愚直 | |

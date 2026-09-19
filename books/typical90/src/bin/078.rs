@@ -1,4 +1,4 @@
-// algo: graph, adjacency-list
+// algo: graph
 use proconio::{input, marker::Usize1};
 
 // 各頂点 i について「隣接頂点のうち番号が i より小さいもの」の個数を数え、それが 1 の

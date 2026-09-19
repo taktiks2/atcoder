@@ -1,4 +1,4 @@
-// algo: data-structure, deque
+// algo: deque
 use proconio::input;
 use std::collections::VecDeque;
 

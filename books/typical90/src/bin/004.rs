@@ -1,4 +1,4 @@
-// algo: cumulative-sum
+// algo: prefix-sum
 use proconio::input;
 
 // 行和 + 列和 - 自分自身

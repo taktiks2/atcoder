@@ -1,4 +1,4 @@
-// algo: hashset
+// algo: set
 use proconio::input;
 use std::collections::HashSet;
 

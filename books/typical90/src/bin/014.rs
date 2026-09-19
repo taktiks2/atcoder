@@ -1,4 +1,4 @@
-// algo: greedy, sorting, exchange-argument
+// algo: greedy, sort, exchange-argument
 use proconio::input;
 
 // A と B をそれぞれ昇順ソートし、同じ順位どうしを組にしたときの距離の総和が答え。

@@ -1,4 +1,4 @@
-// algo: brute-force, mod-arithmetic
+// algo: brute-force, modint
 use proconio::input;
 
 // N <= 100 なので 5 個選ぶ組合せは C(100, 5) = 75,287,520 通り。5 重ループで i<j<k<l<m
