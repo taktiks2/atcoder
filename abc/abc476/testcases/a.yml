@@ -1,0 +1,27 @@
+---
+type: Batch
+timelimit: ~
+match: Lines
+
+cases:
+  - name: sample1
+    in: |
+      live
+    out: |
+      liver
+  - name: sample2
+    in: |
+      femur
+    out: |
+      femurer
+  - name: sample3
+    in: |
+      chimpanzee
+    out: |
+      chimpanzeer
+
+extend:
+  - type: Text
+    path: "./a"
+    in: /in/*.txt
+    out: /out/*.txt
