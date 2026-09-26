@@ -1,0 +1,31 @@
+---
+type: Batch
+timelimit: ~
+match: SplitWhitespace
+
+cases:
+  - name: sample1
+    in: |
+      3 3
+      1 5 7
+    out: |
+      1
+      1
+  - name: sample2
+    in: |
+      3 2
+      1 1 1
+    out: "0\n\n"
+  - name: sample3
+    in: |
+      8 3
+      4 77 20 26 9 26 22 40
+    out: |
+      4
+      1 2 5 8
+
+extend:
+  - type: Text
+    path: "./b"
+    in: /in/*.txt
+    out: /out/*.txt
