@@ -43,6 +43,13 @@ library/  アルゴリズムの模範解答（テスト付き、スニペット�
 snippets/ library から生成した VSCode 形式スニペット（生成物、コミット対象）
 ```
 
+| ドキュメント | 内容 |
+| --- | --- |
+| [docs/roadmap.md](docs/roadmap.md) | 入茶・入緑に必要なアルゴリズムと精進プラン（目標の指標） |
+| [docs/proconio-cheatsheet.md](docs/proconio-cheatsheet.md) | proconio の入力の書き方 |
+| [docs/collections-cheatsheet.md](docs/collections-cheatsheet.md) | `std::collections` の使い分けと定石 |
+| [TAGS.md](TAGS.md) | `// algo:` / `// alt:` タグの語彙集 |
+
 - 1 コンテスト = 1 Cargo パッケージ、1 問題 = 1 bin ターゲット（`src/bin/<problem>.rs`）
 - 問題とバイナリの対応は各パッケージの `Cargo.toml` の `[package.metadata.cargo-compete.bin]`
 - テストケースは `<contest>/testcases/<problem>.yml`。`cases:` に入出力を追記すれば自作ケースを足せる
