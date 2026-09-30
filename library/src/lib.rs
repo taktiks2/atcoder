@@ -6,4 +6,5 @@
 
 pub mod bfs;
 pub mod binary_search;
+pub mod bit_search;
 pub mod dfs;
