@@ -5,7 +5,9 @@ use cargo_snippet::snippet;
 /// mask の i ビット目が 1 なら i を選ぶ。m <= 20 程度が目安。
 #[snippet("bit_search")]
 pub fn subsets(m: usize) -> Vec<Vec<usize>> {
-    todo!()
+    (0..1usize << m)
+        .map(|mask| (0..m).filter(|&i| mask >> i & 1 == 1).collect())
+        .collect()
 }
 
 #[cfg(test)]

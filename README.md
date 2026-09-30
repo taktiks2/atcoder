@@ -74,6 +74,7 @@ Neovim（blink.cmp）から展開する。展開後のコードは自己完結�
 | --- | --- |
 | `binary_search` | めぐる式二分探索（`meguru_bisect`） |
 | `bfs` | 幅優先探索（隣接リスト、始点からの距離） |
+| `bit_search` | bit 全探索（`subsets`、全部分集合を添字リストで列挙） |
 | `dfs` | 深さ優先探索（再帰、行きがけ順） |
 
 ### Neovim 側の設定

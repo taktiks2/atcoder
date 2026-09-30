@@ -41,6 +41,19 @@
       "}"
     ]
   },
+  "bit_search": {
+    "prefix": "bit_search",
+    "body": [
+      "/// bit 全探索。`0..m` の部分集合を、選んだ添字の昇順リストとして全 2^m 通り返す。",
+      "/// 並びは mask = 0, 1, ..., 2^m - 1 の順（先頭は空集合）。",
+      "/// mask の i ビット目が 1 なら i を選ぶ。m <= 20 程度が目安。",
+      "pub fn subsets(m: usize) -> Vec<Vec<usize>> {",
+      "    (0..1usize << m)",
+      "        .map(|mask| (0..m).filter(|&i| mask >> i & 1 == 1).collect())",
+      "        .collect()",
+      "}"
+    ]
+  },
   "dfs": {
     "prefix": "dfs",
     "body": [
