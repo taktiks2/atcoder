@@ -42,7 +42,7 @@ login:
 # ログイン状態を確認 (Cookie のユーザー名 + 要ログイン API で E2E 確認)
 whoami:
     @grep -o 'UserScreenName%3A[A-Za-z0-9_]*' "$HOME/Library/Application Support/cargo-compete/cookies.jsonl" 2>/dev/null | sed 's/UserScreenName%3A/Cookie: /' || { echo "未ログイン (匿名セッション)"; exit 1; }
-    @d=$(ls -d abc/* 2>/dev/null | head -1) && cd "$d" && cargo compete retrieve submission-summaries > /dev/null && echo "API 疎通: OK (ログイン有効)"
+    @d=$(ls -d abc/*/* 2>/dev/null | head -1) && cd "$d" && cargo compete retrieve submission-summaries > /dev/null && echo "API 疎通: OK (ログイン有効)"
 
 # 新規コンテスト作成: just new abc338 (生成先は compete.toml が種別ごとに振り分け)
 new contest:
@@ -100,5 +100,5 @@ alias a := algo
 
 # コンテスト名からディレクトリを解決 (内部用)
 _dir contest:
-    @d=$(ls -d abc/{{ contest }} arc/{{ contest }} agc/{{ contest }} ahc/{{ contest }} books/{{ contest }} other/{{ contest }} 2>/dev/null | head -1); \
+    @d=$(ls -d abc/*/{{ contest }} arc/*/{{ contest }} agc/*/{{ contest }} ahc/*/{{ contest }} books/{{ contest }} other/{{ contest }} 2>/dev/null | head -1); \
     if [ -n "$d" ]; then echo "$d"; else echo "コンテストが見つかりません: {{ contest }}" >&2; exit 1; fi

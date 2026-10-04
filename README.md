@@ -15,7 +15,7 @@ just login     # AtCoder にログイン（初回のみ）
 
 ```sh
 just new abc338        # 新規コンテスト作成 + サンプル取得
-# abc/abc338/src/bin/a.rs を編集
+# abc/3xx/abc338/src/bin/a.rs を編集
 just test abc338 a     # サンプルでテスト (alias: just t)
 just submit abc338 a   # テスト通過時のみ提出 (alias: just s)
 ```
@@ -35,8 +35,8 @@ just submit abc338 a   # テスト通過時のみ提出 (alias: just s)
 ## ディレクトリ構成
 
 ```
-abc/      AtCoder Beginner Contest
-arc/ agc/ ahc/   （初回作成時に自動生成）
+abc/      AtCoder Beginner Contest（100 回ごとの帯で分割: abc/4xx/abc478）
+arc/ agc/ ahc/   （初回作成時に自動生成、abc と同じく帯で分割）
 books/    書籍・問題集（tessoku-book, typical90）
 other/    その他（abs など）
 library/  アルゴリズムの模範解答（テスト付き、スニペットの元）

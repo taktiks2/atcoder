@@ -147,8 +147,8 @@ platform = "atcoder"
 # - `contest`:      Contest ID. **May be nil**
 # - `package_name`: Package name
 #
-# コンテスト種別ごとに abc/ arc/ agc/ ahc/ other/ へ振り分ける
-path = './{% if contest contains "abc" %}abc/{% elsif contest contains "arc" %}arc/{% elsif contest contains "agc" %}agc/{% elsif contest contains "ahc" %}ahc/{% else %}other/{% endif %}{{ contest }}'
+# コンテスト種別ごとに abc/ arc/ agc/ ahc/ other/ へ振り分け、さらに 100 回ごとの帯 (abc478 -> abc/4xx/) に分ける
+path = './{% if contest contains "abc" %}abc/{{ contest | slice: 3, 1 }}xx/{% elsif contest contains "arc" %}arc/{{ contest | slice: 3, 1 }}xx/{% elsif contest contains "agc" %}agc/{{ contest | slice: 3, 1 }}xx/{% elsif contest contains "ahc" %}ahc/{{ contest | slice: 3, 1 }}xx/{% else %}other/{% endif %}{{ contest }}'
 
 #[new]
 #kind = "oj-api"

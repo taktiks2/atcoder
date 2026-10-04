@@ -57,7 +57,7 @@ fn same_pairs(a: &[i64]) -> u64 {
 }
 ```
 
-二重ループ O(N^2) を O(N) に落とす一番素直な使い方（`abc/abc473/src/bin/b.rs:14` が同じ形）。
+二重ループ O(N^2) を O(N) に落とす一番素直な使い方（`abc/4xx/abc473/src/bin/b.rs:14` が同じ形）。
 
 ### 累積和 × HashMap で「和が K の区間」を数える
 
@@ -271,7 +271,7 @@ fn kth_largest_online(a: &[usize], k: usize) -> Vec<usize> {
 `set` が常に K 要素なので、その最小がそのまま「降順 K 番目」。
 ⚠️ `BTreeSet` は集合なので同値が潰れる。添字が相異なることを使って `(値, 添字)` で入れると
 多重集合になる。タプルの `Ord` は辞書式なので順序は第 1 要素で決まる
-（詳細は `abc/abc476/src/bin/c.rs:20` のコメント）。
+（詳細は `abc/4xx/abc476/src/bin/c.rs:20` のコメント）。
 
 ## BinaryHeap
 
@@ -404,4 +404,4 @@ let mut m: FxHashMap<i64, usize> = FxHashMap::default();   // ::new() ではな�
 ## 参考
 
 - [std::collections](https://doc.rust-lang.org/std/collections/) — 冒頭に選択ガイドがある
-- 実例: `abc/abc476/src/bin/c.rs`（BTreeSet の多重集合化 + BinaryHeap の別解）
+- 実例: `abc/4xx/abc476/src/bin/c.rs`（BTreeSet の多重集合化 + BinaryHeap の別解）
