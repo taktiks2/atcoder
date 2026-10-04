@@ -23,6 +23,7 @@ just submit abc338 a   # テスト通過時のみ提出 (alias: just s)
 | コマンド | 内容 |
 | --- | --- |
 | `just new <contest>` | パッケージ生成 + サンプル取得（生成先は種別ごとに自動振り分け） |
+| `just go <contest>` | 取得 → ブラウザで全問題文（`tasks_print`）と A 問題を開く → `a.rs` を nvim で開く。開始前に打てば 5 秒おきに最大 5 分再試行 |
 | `just test <contest> <problem>` | サンプルでテスト。`--release` などのフラグ追加可 |
 | `just submit <contest> <problem>` | テスト通過時のみ提出し、ジャッジ結果を watch。`--no-test` / `--no-watch` 可 |
 | `just open <contest>` | 問題ページとソース/テストを開く |

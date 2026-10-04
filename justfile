@@ -48,6 +48,26 @@ whoami:
 new contest:
     cargo compete new {{ contest }}
 
+# コンテスト開始直後の準備: just go abc479 (開始前に打っておけば 5 秒おきに最大 5 分再試行)
+# 取得 (取得済みならスキップ) → ブラウザで全問題文 (tasks_print) と A 問題を開く → このペーンで a.rs を nvim で開く
+go contest:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    just="{{ just_executable() }}"
+    for i in $(seq 1 60); do
+        "$just" _dir {{ contest }} >/dev/null 2>&1 && break
+        cargo compete new {{ contest }} && break
+        [ "$i" -eq 60 ] && { echo "5 分以内に取得できませんでした: {{ contest }}" >&2; exit 1; }
+        echo "取得失敗 ($i/60)。5 秒後に再試行..."
+        sleep 5
+    done
+    d="$("$just" _dir {{ contest }})"
+    url=$(grep -E 'alias = "a"|^a = ' "$d/Cargo.toml" | grep -oE 'https://[^"]+' | head -1 || true)
+    # 後に開いたタブが前面に来るので、A 問題を最後に開く
+    open "https://atcoder.jp/contests/{{ contest }}/tasks_print"
+    open "${url:-https://atcoder.jp/contests/{{ contest }}/tasks/{{ contest }}_a}"
+    exec nvim "$d/src/bin/a.rs"
+
 # サンプルでテスト: just test abc338 a (追加フラグ可: --release など)
 # mkdir: 旧版 cargo-compete で作ったパッケージには yml が参照する testcases/<問題>/ が無く、
 # テストスイートの解決に失敗するため作っておく (新規パッケージでは生成済みで無害)
@@ -92,6 +112,7 @@ algos:
         | sed 's|^// algo: *||' | tr ',' '\n' | sed 's/^ *//; s/ *$//' | sort | uniq -c | sort -rn
 
 alias n := new
+alias g := go
 alias t := test
 alias s := submit
 alias o := open
