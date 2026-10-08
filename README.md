@@ -77,6 +77,8 @@ Neovim（blink.cmp）から展開する。展開後のコードは自己完結�
 | `bfs` | 幅優先探索（隣接リスト、始点からの距離） |
 | `bit_search` | bit 全探索（`subsets`、全部分集合を添字リストで列挙） |
 | `dfs` | 深さ優先探索（再帰、行きがけ順） |
+| `prefix_sum` | 1 次元累積和（`PrefixSum`、半開区間 `[l, r)` の和） |
+| `prefix_sum_2d` | 2 次元累積和（`PrefixSum2d`、行 `[x1, x2)` × 列 `[y1, y2)` の和） |
 
 ### Neovim 側の設定
 

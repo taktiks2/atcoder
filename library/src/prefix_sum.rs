@@ -8,12 +8,16 @@ pub struct PrefixSum(Vec<i64>);
 #[snippet("prefix_sum")]
 impl PrefixSum {
     pub fn new(a: &[i64]) -> Self {
-        todo!()
+        let mut s = vec![0];
+        for &x in a {
+            s.push(s.last().unwrap() + x);
+        }
+        Self(s)
     }
 
     /// `a[l] + ... + a[r-1]`。`l == r` なら 0
     pub fn sum(&self, l: usize, r: usize) -> i64 {
-        todo!()
+        self.0[r] - self.0[l]
     }
 }
 
@@ -25,12 +29,27 @@ pub struct PrefixSum2d(Vec<Vec<i64>>);
 #[snippet("prefix_sum_2d")]
 impl PrefixSum2d {
     pub fn new(a: &[Vec<i64>]) -> Self {
-        todo!()
+        let h = a.len();
+        let w = a.first().map_or(0, |row| row.len());
+        let mut s = vec![vec![0; w + 1]; h + 1];
+        // 横方向に累積してから縦方向に累積する (包除の 4 項を書かずに済む)
+        for i in 0..h {
+            for j in 0..w {
+                s[i + 1][j + 1] = s[i + 1][j] + a[i][j];
+            }
+        }
+        for i in 0..h {
+            for j in 0..=w {
+                s[i + 1][j] += s[i][j];
+            }
+        }
+        Self(s)
     }
 
     /// 行 `[x1, x2)` × 列 `[y1, y2)` の和。幅か高さが 0 なら 0
     pub fn sum(&self, x1: usize, y1: usize, x2: usize, y2: usize) -> i64 {
-        todo!()
+        let s = &self.0;
+        s[x2][y2] - s[x1][y2] - s[x2][y1] + s[x1][y1]
     }
 }
 
