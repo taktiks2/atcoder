@@ -1,11 +1,11 @@
 ---
 name: annotate
-description: Use when a solution in this repo has already passed and needs its `// algo:` tag line, the reasoning comment above main, or `// alt:` alternative-solution blocks — e.g. 「abc255 b に algo と alt つけて」「AC したのでコメント書いて」「別解メモ残して」. Not for solving a problem or for hints before AC.
+description: Use when a solution in this repo has already passed and needs its `// algo:` tag line, `// solve:` line, the reasoning comment above main, or `// alt:` alternative-solution blocks — e.g. 「abc255 b に algo と alt つけて」「AC したのでコメント書いて」「別解メモ残して」. Not for solving a problem or for hints before AC.
 ---
 
 # annotate
 
-AC 済みのコードに `// algo:` タグ・考察コメント・`// alt:` ブロックを付ける。規約の唯一の権威は `TAGS.md`。
+AC 済みのコードに `// algo:` タグ・`// solve:` 行・考察コメント・`// alt:` ブロックを付ける。規約の唯一の権威は `TAGS.md`。
 
 ## 必ず守ること
 
@@ -27,10 +27,11 @@ AC 済みのコードに `// algo:` タグ・考察コメント・`// alt:` ブ�
 1. 対象ファイルを読む。問題文は WebFetch で取り、**制約の実物**を確認する（コメントに書く数値の根拠になる）
 2. 文体の基準を合わせる: `abc/2xx/abc212/src/bin/c.rs`（厚め）/ `abc/1xx/abc196/src/bin/c.rs`（標準）
 3. タグを選び、`TAGS.md` と照合する（下記）
-4. 考察コメントを main の前に書く
-5. `// alt:` を main の後ろ（ファイル末尾）に書く
-6. **diff を見せて確認を取る** → 書き込み
-7. `just test <contest> <problem>` で AC のままか確認する
+4. `// solve:` の値を決める（下記）
+5. 考察コメントを main の前に書く
+6. `// alt:` を main の後ろ（ファイル末尾）に書く
+7. **diff を見せて確認を取る** → 書き込み
+8. `just test <contest> <problem>` で AC のままか確認する
 
 ## タグの照合（必須）
 
@@ -45,6 +46,19 @@ AC 済みのコードに `// algo:` タグ・考察コメント・`// alt:` ブ�
 語彙に無い新タグは、**`TAGS.md` への追記をユーザーに提案してから**使う。追記先は該当カテゴリの表。
 
 2026-09-19 時点でドリフトは 0 件（全 `// algo:` 行が `TAGS.md` の正規タグと一致している）。**この状態を壊さない。** 語彙外のタグや使わない表記に遭遇したら報告するだけにし、一括修正は別依頼として扱う。
+
+## `// solve:` の値
+
+`// algo:` の直下（2 行目）に `// solve: <値> <今日の日付>` を置く。値は会話から判断する:
+
+| 会話の状況 | 値 |
+| --- | --- |
+| 同じ会話で `hint` スキルが段階 3（模範コード）まで出した／解説コードを写したと言っている | `copy` |
+| ヒント（段階 1〜2）だけ出した | `hint` |
+| ヒントのやり取りがなく「自力で解いた」と分かる | `self` |
+| 判断できない | **ユーザーに聞く**。推測で `self` にしない |
+
+既に `// solve:` 行がある（解き直し）なら、上書きせず `, <値> <日付>` を右に追記する。
 
 ## 書く内容
 
@@ -83,4 +97,4 @@ AC 済みのコードに `// algo:` タグ・考察コメント・`// alt:` ブ�
 
 ## 完了報告
 
-付けたタグ / alt の本数（うちリファクタリング版の有無）/ `just test` の結果を 1 行ずつ。`TAGS.md` を変更したならその旨も。
+付けたタグ / solve の値 / alt の本数（うちリファクタリング版の有無）/ `just test` の結果を 1 行ずつ。`TAGS.md` を変更したならその旨も。

@@ -12,13 +12,14 @@ AtCoder の解答リポジトリ（Rust）。セットアップ・コマンド�
 - 1 コンテスト = 1 Cargo パッケージ、1 問題 = `src/bin/<problem>.rs`（例: `abc/3xx/abc338/src/bin/a.rs`）
 - テストケースは `<contest>/testcases/<problem>.yml`
 - `library/` はスニペット元の模範実装（テスト付き）、`snippets/rust.json` はその生成物
-- `// algo:` / `// alt:` タグの語彙は `TAGS.md`。初出のタグは TAGS.md に追記してから使う
+- `// algo:` / `// alt:` / `// solve:` の規約は `TAGS.md`。初出のタグは TAGS.md に追記してから使う
 
 ## コマンド
 
 - `just test <contest> <problem>` — サンプルでテスト
 - `just snippets` — `library/` のテスト + スニペット再生成
 - `just algo <tag>` / `just algos` — タグ検索 / 集計
+- `just solves` / `just redo` — 自力・ヒント・写経の集計 / 復習キュー
 - 提出（`just submit`）はユーザーが行う
 
 ## Rust のコード規約
