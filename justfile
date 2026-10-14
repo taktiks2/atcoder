@@ -88,9 +88,9 @@ clip contest problem:
     echo "クリップボードにコピー: $d/src/bin/{{ problem }}.rs" && \
     open "${url:-https://atcoder.jp/contests/{{ contest }}/tasks/{{ contest }}_{{ problem }}}"
 
-# 問題ページとソース/テストを開く: just open abc338
-open contest:
-    cd "$("{{ just_executable() }}" _dir {{ contest }})" && cargo compete open
+# 問題ページとソース/テストを開く: just open abc338 (全問題) / just open abc338 a (指定問題のみ)
+open contest problem="":
+    cd "$("{{ just_executable() }}" _dir {{ contest }})" && cargo compete open {{ if problem == "" { "" } else { "--bin " + problem } }}
 
 # テストケース再取得: just retrieve abc338 (--full でシステムテスト)
 retrieve contest *flags:

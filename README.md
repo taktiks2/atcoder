@@ -26,7 +26,7 @@ just submit abc338 a   # テスト通過時のみ提出 (alias: just s)
 | `just go <contest>` | 取得 → ブラウザで全問題文（`tasks_print`）と A 問題を開く → `a.rs` を nvim で開く。開始前に打てば 5 秒おきに最大 5 分再試行 |
 | `just test <contest> <problem>` | サンプルでテスト。`--release` などのフラグ追加可 |
 | `just submit <contest> <problem>` | テスト通過時のみ提出し、ジャッジ結果を watch。`--no-test` / `--no-watch` 可 |
-| `just open <contest>` | 問題ページとソース/テストを開く |
+| `just open <contest> [problem]` | 問題ページとソース/テストを開く (problem 指定でその問題のみ) |
 | `just retrieve <contest>` | テストケース再取得。`--full` でシステムテスト取得（Dropbox トークン要） |
 | `just snippets` | 模範解答（`library/`）のテスト実行 + エディタ用スニペット再生成 |
 | `just login` | AtCoder にログイン |
