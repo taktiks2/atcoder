@@ -49,6 +49,7 @@ snippets/ library から生成した VSCode 形式スニペット（生成物、
 | [docs/roadmap.md](docs/roadmap.md) | 入茶・入緑に必要なアルゴリズムと精進プラン（目標の指標） |
 | [docs/proconio-cheatsheet.md](docs/proconio-cheatsheet.md) | proconio の入力の書き方 |
 | [docs/collections-cheatsheet.md](docs/collections-cheatsheet.md) | `std::collections` の使い分けと定石 |
+| [docs/testcases-cheatsheet.md](docs/testcases-cheatsheet.md) | testcases yml の書き方（`match` の種類・自作ケース・Checker） |
 | [TAGS.md](TAGS.md) | `// algo:` / `// alt:` / `// solve:` の語彙集 |
 
 - 1 コンテスト = 1 Cargo パッケージ、1 問題 = 1 bin ターゲット（`src/bin/<problem>.rs`）
