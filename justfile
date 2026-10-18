@@ -109,7 +109,7 @@ algo tag:
 # 全タグの使用回数一覧: just algos
 algos:
     @grep -rh --include='*.rs' '^// algo:' $(ls -d abc arc agc ahc books other 2>/dev/null) \
-        | sed 's|^// algo: *||' | tr ',' '\n' | sed 's/^ *//; s/ *$//' | sort | uniq -c | sort -rn
+        | sed 's|^// algo: *||' | tr ',' '\n' | sed 's/^ *//; s/ *$//' | grep -v '^$' | sort | uniq -c | sort -rn
 
 # 解き方 (self/hint/copy) の件数集計: just solves (各ファイルの最後の値で数える。TAGS.md 参照)
 solves:
@@ -118,8 +118,9 @@ solves:
     files=$(find $(ls -d abc arc agc ahc books other 2>/dev/null) -path '*/src/bin/*.rs' 2>/dev/null)
     [ -z "$files" ] && { echo "解答ファイルなし"; exit 0; }
     for f in $files; do
-        l=$(grep -m1 '^// solve:' "$f" || true)
-        if [ -z "$l" ]; then echo "未記入"; else sed 's/.*,//; s|^// solve:||; s/^ *//' <<<"$l" | awk '{print $1}'; fi
+        # テンプレート由来の空の `// solve:` 行も未記入として数える
+        v=$(grep -m1 '^// solve:' "$f" | sed 's/.*,//; s|^// solve:||; s/^ *//' | awk '{print $1}')
+        echo "${v:-未記入}"
     done | sort | uniq -c | sort -rn
 
 # 復習キュー (最後の値が copy / hint の問題): just redo
