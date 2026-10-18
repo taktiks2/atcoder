@@ -16,6 +16,12 @@ cases:
       12 123 132 213 231 312 321 500 1000
     out: |
       11
+  - name: sample3
+    in: |
+      1 1 1
+      5
+    out: |
+      1
 
 extend:
   - type: Text
