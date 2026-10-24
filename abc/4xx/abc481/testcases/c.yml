@@ -1,0 +1,50 @@
+---
+type: Batch
+timelimit: ~
+match: Lines
+
+cases:
+  - name: sample1
+    in: |
+      8
+      pumpkin
+      hobak
+      pompoen
+      hobak
+      pumpkin
+      boga
+      boga
+      hobak
+    out: |
+      1
+      2
+      3
+      2
+      1
+      4
+      4
+      2
+  - name: sample2
+    in: |
+      7
+      joayo
+      joayo
+      joayo
+      joayo
+      joayo
+      joayo
+      joayo
+    out: |
+      1
+      1
+      1
+      1
+      1
+      1
+      1
+
+extend:
+  - type: Text
+    path: "./c"
+    in: /in/*.txt
+    out: /out/*.txt
