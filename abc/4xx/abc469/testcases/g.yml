@@ -1,0 +1,43 @@
+---
+type: Batch
+timelimit: ~
+match: Lines
+
+cases:
+  - name: sample1
+    in: |
+      3
+      a
+      aa
+      b
+      5
+      abc
+    out: |
+      cab
+  - name: sample2
+    in: |
+      2
+      a
+      ba
+      6
+      fibonacci
+    out: |
+      canobific
+  - name: sample3
+    in: |
+      5
+      aba
+      a
+      bb
+      ba
+      aab
+      1000000000000000000
+      abcba
+    out: |
+      aabcb
+
+extend:
+  - type: Text
+    path: "./g"
+    in: /in/*.txt
+    out: /out/*.txt
