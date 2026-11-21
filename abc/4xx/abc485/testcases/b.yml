@@ -1,0 +1,36 @@
+---
+type: Batch
+timelimit: ~
+match: Lines
+
+cases:
+  - name: sample1
+    in: |
+      3 4
+      oooo
+      xxxx
+      oooo
+    out: |
+      Faucet 2
+  - name: sample2
+    in: |
+      4 3
+      oxo
+      oxo
+      oxo
+      oxo
+    out: |
+      Drain 2
+  - name: sample3
+    in: |
+      2 2
+      xo
+      xo
+    out: |
+      Drain 1
+
+extend:
+  - type: Text
+    path: "./b"
+    in: /in/*.txt
+    out: /out/*.txt
