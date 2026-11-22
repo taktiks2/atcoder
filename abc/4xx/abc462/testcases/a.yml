@@ -1,0 +1,31 @@
+---
+type: Batch
+timelimit: ~
+match: Lines
+
+cases:
+  - name: sample1
+    in: |
+      abc462
+    out: |
+      462
+  - name: sample2
+    in: |
+      codequeen
+    out: >
+  - name: sample3
+    in: |
+      31415
+    out: |
+      31415
+  - name: sample4
+    in: |
+      10plus2is12
+    out: |
+      10212
+
+extend:
+  - type: Text
+    path: "./a"
+    in: /in/*.txt
+    out: /out/*.txt
